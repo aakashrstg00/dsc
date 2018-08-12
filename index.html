@@ -30,7 +30,7 @@
                         <a href="#/challenges">challenges</a>
                     </li>
                     <li>
-                        <a href="#/osp">
+                        <a href="http://dsoc-bvcoe.herokuapp.com">
                             <strong>osp</strong>
                         </a>
                     </li>
@@ -54,7 +54,7 @@
                         <a href="#/challenges" onclick="$('.cross').click()">challenges</a>
                     </li>
                     <li>
-                        <a href="#/osp" onclick="$('.cross').click()">
+                        <a href="http://dsoc-bvcoe.herokuapp.com" onclick="$('.cross').click()">
                             <strong>osp</strong>
                         </a>
                     </li>
@@ -102,14 +102,12 @@
             $locationProvider.hashPrefix('');
             $routeProvider.when("/", {
                 templateUrl: "views/home.html"
-            }).when("/about", {
-                templateUrl: "views/about.html",
             }).when("/challenges", {
                 templateUrl: "views/challenges.html"
             }).when("/team", {
                 templateUrl: "views/team.html"
             }).when("/404", {
-                templateUrl: "/views/notfound.html"
+                templateUrl: "views/notfound.html"
             }).otherwise({
                 template: "Error Page , No Match Found",
                 redirectTo: "/404"

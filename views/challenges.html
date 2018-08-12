@@ -4,9 +4,24 @@
         color: #fff;
     }
 
-    main>div {
-        background: #16a085;
+    .chall {
+        background: url(img/challenge.jpg);
         height: calc(100vh - var(--nav-height) - var(--footer-height));
+    }
+
+    .chall .overlay {
+        height: 100%;
+        width: 100%;
+        background-color: #222;
+        opacity: 0.6;
+    }
+
+    .chall .text {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         padding: 32px 0;
         display: flex;
         flex-direction: column;
@@ -19,19 +34,22 @@
     }
 </style>
 <main>
-    <div>
-        <p class="large">
-            <strong>Challenge Series</strong>
-        </p>
-        <h1>Coming Soon!
-            <br>
-            <small>
-                <small>Stay tuned..</small>
-            </small>
-        </h1>
-        <h2 style="padding-top: 20px;">
-            Go
-            <a href="#/">home</a>?
-        </h2>
+    <div class="chall">
+        <div class="overlay"></div>
+        <div class="text">
+            <p class="large">
+                <strong>Challenge Series</strong>
+            </p>
+            <h1>Coming Soon!
+                <br>
+                <small>
+                    <small>Stay tuned..</small>
+                </small>
+            </h1>
+            <h2 style="padding-top: 20px;">
+                Go
+                <a href="#/" style="color: #eee;">home</a>?
+            </h2>
+        </div>
     </div>
 </main>
