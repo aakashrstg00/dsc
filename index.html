@@ -1,1 +1,121 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Developer Student Club BVP | DSCBVP</title>
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body ng-app="DSCApp">
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <p onclick="location.href='#'">
+                    <strong>DSC</strong>
+                    <span>BVP</span>
+                </p>
+            </div>
+            <div class="nav-content">
+                <ul>
+                    <li>
+                        <a href="#/about">about</a>
+                    </li>
+                    <li>
+                        <a href="#/team">team</a>
+                    </li>
+                    <li>
+                        <a href="#/challenges">challenges</a>
+                    </li>
+                    <li>
+                        <a href="#/osp">
+                            <strong>osp</strong>
+                        </a>
+                    </li>
+                </ul>
+                <div class="nav-mobile-btn">
+                    &#9776;
+                </div>
+            </div>
+        </nav>
+        <div class="nav-mobile">
+            <div class="nav-content-mobile">
+                <div class="cross">&#9932;</div>
+                <ul>
+                    <li>
+                        <a href="#/about" onclick="$('.cross').click()">about</a>
+                    </li>
+                    <li>
+                        <a href="#/team" onclick="$('.cross').click()">team</a>
+                    </li>
+                    <li>
+                        <a href="#/challenges" onclick="$('.cross').click()">challenges</a>
+                    </li>
+                    <li>
+                        <a href="#/osp" onclick="$('.cross').click()">
+                            <strong>osp</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div ng-view autoscroll></div>
+    <footer>
+        <p>
+            &copy;
+            <strong>DSC</strong> BVP
+            <small>
+                <small>2018</small>
+            </small>
+        </p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('.nav-mobile-btn').click(() => {
+                $('.nav-mobile').css('display', 'block');
+                $('.nav-mobile').animate({
+                    "right": "0",
+                    "opacity": "1"
+                }, 300);
+            });
+
+            $('.cross').click(() => {
+                $('.nav-mobile').animate({
+                    "right": "-50%",
+                    "opacity": "0"
+                }, 500);
+                setTimeout(() => {
+                    $('.nav-mobile').css('display', 'none');
+                }, 300);
+            });
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-route.min.js"></script>
+    <script>
+        var app = angular.module("DSCApp", ['ngRoute']);
+        app.config(function ($routeProvider, $locationProvider) {
+            $locationProvider.hashPrefix('');
+            $routeProvider.when("/", {
+                templateUrl: "/views/home.html"
+            }).when("/about", {
+                templateUrl: "/views/about.html",
+            }).when("/challenges", {
+                templateUrl: "/views/challenges.html"
+            }).when("/team", {
+                templateUrl: "/views/team.html"
+            }).when("/404", {
+                templateUrl: "/views/notfound.html"
+            }).otherwise({
+                template: "Error Page , No Match Found",
+                redirectTo: "/404"
+            });
+        });
+    </script>
+</body>
+
+</html>
