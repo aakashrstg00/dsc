@@ -101,13 +101,13 @@
         app.config(function ($routeProvider, $locationProvider) {
             $locationProvider.hashPrefix('');
             $routeProvider.when("/", {
-                templateUrl: "/views/home.html"
+                templateUrl: "views/home.html"
             }).when("/about", {
-                templateUrl: "/views/about.html",
+                templateUrl: "views/about.html",
             }).when("/challenges", {
-                templateUrl: "/views/challenges.html"
+                templateUrl: "views/challenges.html"
             }).when("/team", {
-                templateUrl: "/views/team.html"
+                templateUrl: "views/team.html"
             }).when("/404", {
                 templateUrl: "/views/notfound.html"
             }).otherwise({
