@@ -1,0 +1,299 @@
+<style>
+    #banner {
+        height: calc(100vh - var(--nav-height));
+        width: 100%;
+        background-image: url("img/team.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    .overlay {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(to top right, rgba(0, 0, 0, 0.6) 22%, transparent 44%);
+    }
+
+    .banner-text {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        color: #ddd;
+
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+    }
+
+    .banner-text .dsc-logo {
+        width: 150px;
+    }
+
+    .banner-text .dev-logo {
+        width: 20px;
+        height: 16px;
+    }
+
+    .banner-text .heading {
+        font-size: 44px;
+        color: #fff;
+    }
+
+    #whatwedo {
+        text-align: center;
+        padding: 40px 100px;
+        color: #333;
+    }
+
+    #whatwedo h2 {
+        text-transform: uppercase;
+    }
+
+    #whatwedo p {
+        font-size: 20px;
+        margin-top: 32px;
+    }
+
+    #whatwedo img {
+        padding-top: 32px;
+        width: 164px;
+    }
+
+    #quote {
+        padding: 56px 120px;
+        background-color: #3f3d3e;
+        color: #fff;
+        font-size: 32px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #quote img {
+        width: 200px;
+    }
+
+    #quote p {
+        padding: 0 56px;
+        text-align: center;
+    }
+
+    #expertise {
+        text-align: center;
+        padding: 40px;
+        background-color: #fff;
+    }
+
+    #expertise h2 {
+        color: #333;
+        text-transform: uppercase;
+    }
+
+    #expertise img {
+        padding-top: 32px;
+        width: 50vw;
+    }
+
+    #techs {
+        padding: 32px;
+        background-color: #16a085;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 20px;
+    }
+
+    #techs .tech {
+        width: 50%;
+    }
+
+    #techs .tech p {
+        font-weight: bold;
+    }
+
+    #techs .tech ul {
+        list-style-type: none;
+        padding: 4px;
+        padding-top: 12px;
+    }
+
+    ul.dashed>li::before {
+        content: "- ";
+    }
+
+    .row {
+        width: 100%;
+        display: flex;
+        height: 164px;
+        padding: 16px 0;
+    }
+
+    @media screen and (max-width:768px) and (min-width:580px) {
+        #banner {
+            height: calc(75vh - var(--nav-height));
+        }
+        .banner-text {
+            font-size: 16px;
+        }
+        .banner-text .dsc-logo {
+            width: 100px;
+        }
+
+        .banner-text .heading {
+            font-size: 32px;
+        }
+
+        #quote {
+            padding: 56px;
+        }
+
+        #techs {
+            font-size: 18px;
+        }
+    }
+
+    @media screen and (max-width:580px) {
+        #banner {
+            height: calc(50vh - var(--nav-height));
+        }
+
+        .banner-text {
+            font-size: 14px;
+        }
+
+        .banner-text .dsc-logo {
+            width: 80px;
+        }
+
+        .banner-text .heading {
+            font-size: 24px;
+        }
+
+        #whatwedo {
+            padding: 40px;
+        }
+
+        #quote {
+            padding: 40px;
+            flex-direction: column-reverse;
+        }
+
+        #quote img {
+            width: 160px;
+        }
+
+        #quote p {
+            padding: 0;
+            padding-bottom: 56px;
+        }
+
+        #expertise img {
+            width: 100%;
+        }
+
+        #techs .row {
+            flex-direction: column;
+            height: auto;
+            padding: 0;
+        }
+
+        #techs .tech {
+            width: 100%;
+            margin: 12px 0;
+            text-align: center;
+            font-size: 18px;
+        }
+        #techs .tech ul {
+            font-size: 16px;
+        }
+
+        ul.dashed>li::before {
+            content: "";
+        }
+    }
+</style>
+<main>
+    <div id="banner">
+        <div class="overlay"></div>
+        <div class="banner-text">
+            <div>
+                <img src="img/logo.png" class="dsc-logo" alt="">
+            </div>
+            <div>
+                <div style="display: flex; color: #fff; align-items: center;">
+                    <img src="img/google-developers-logo.png" class="dev-logo" alt=""> &nbsp;
+                    <p>
+                        <span style="font-weight: 600;">Google</span>
+                    </p>&nbsp;
+                    <p>Developers</p>
+                </div>
+                <p class="heading">Developer Student Club</p>
+                <p>Bharati Vidyapeeth's College of Engineering</p>
+            </div>
+        </div>
+    </div>
+    <div id="whatwedo">
+        <h2>What We Do?</h2>
+        <p>
+            DSC or Developers Student Club is a program under Google Developers that targets undergraduate students.
+        </p>
+        <p>
+            It's main focus is to help the students identify the current technologies used in the industry and educate them for the same
+            so that they become excellent developers.
+        </p>
+        <img src="img/google-developers.png" alt="">
+    </div>
+    <div id="quote">
+        <div>
+            <img src="img/coffee-code.jpg" alt="">
+        </div>
+        <p>
+            "We are a bunch of enthusiastic technocrats who took the responsibility of delivering this required knowledge to you."
+        </p>
+    </div>
+    <div id="expertise">
+        <h2>Our Expertise</h2>
+        <img src="img/logo-ex.png" alt="">
+    </div>
+    <div id="techs">
+        <div class="row">
+            <div class="tech">
+                <p>Web Technology</p>
+                <ul class="dashed">
+                    <li>Frontend</li>
+                    <li>Backend</li>
+                    <li>DevOps</li>
+                    <li>Databases</li>
+                </ul>
+            </div>
+            <div class="tech">
+                <p>Hardware</p>
+                <ul class="dashed">
+                    <li>Arduino</li>
+                    <li>Raspberry Pi</li>
+                    <li>IoT</li>
+                    <li>UAV</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="tech">
+                <p>Machine Learning</p>
+                <ul class="dashed">
+                    <li>Deep Learning</li>
+                    <li>ROS</li>
+                    <li>Computer Vision</li>
+                    <li>Natural Language Processing</li>
+                </ul>
+            </div>
+            <div class="tech">
+                <p>Miscellaneous</p>
+                <ul class="dashed">
+                    <li>AR/VR</li>
+                    <li>Blockchain</li>
+                    <li>Flutter</li>
+                    <li>Unity</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
