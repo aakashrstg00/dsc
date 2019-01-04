@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Developer Student Club BVP | DSCBVP</title>
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="https://halanxhomes.com/libs/ng-accordion.css">
 </head>
 
 <body ng-app="DSCApp">
@@ -96,14 +97,54 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-route.min.js"></script>
+    <script src="https://halanxhomes.com/libs/ng-accordion.js"></script>
     <script>
-        var app = angular.module("DSCApp", ['ngRoute']);
+        var app = angular.module("DSCApp", ['ngRoute', 'angAccordion']);
+
+        app.controller("ChallengeController", function ($scope) {
+            $scope.qna = [
+                {
+                    question: "Should each member of the team submit the form?",
+                    answer: "Only the team leader needs to submit the form, submitting the details of other members."
+                },
+                {
+                    question: "Can I be in more than one team?",
+                    answer: "Each student can join one team only."
+                },
+                {
+                    question: "What is the deadline for submission?",
+                    answer: "The time for each submission is different and the deadline will be on the site for the currently active challenge."
+                },
+                {
+                    question: "Can we make multiple submissions as a team?",
+                    answer: "You can only submit for one problem statement. However, you can improve upon your selected problem for further rounds."
+                },
+                {
+                    question: "Can we change the team name?",
+                    answer: "Once registered, the team name cannot be changed."
+                },
+                {
+                    question: "How big can my team be?",
+                    answer: "A maximum of 4 members can be in a team. Lone wolves are also allowed."
+                },
+                {
+                    question: "Can Non-DSC Members participate in the challenge?",
+                    answer: "The challenge series is only for DSC members."
+                },
+                {
+                    question: "What if I have more questions to ask?",
+                    answer: "Reach out to us on DSC Student Members Group. Other people may also have the same doubts, so it's better to utilize the group."
+                }
+            ];
+        });
+
         app.config(function ($routeProvider, $locationProvider) {
             $locationProvider.hashPrefix('');
             $routeProvider.when("/", {
                 templateUrl: "views/home.html"
             }).when("/challenges", {
-                templateUrl: "views/challenges.html"
+                templateUrl: "views/challenges.html",
+                controller: "ChallengeController"
             }).when("/code-of-conduct", {
                 templateUrl: "views/code.html"
             }).when("/team", {

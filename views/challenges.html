@@ -1,55 +1,371 @@
 <style>
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: #000;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        outline: 1px solid slategrey;
+        border-radius: 6px;
+    }
+
     main {
         text-align: center;
         color: #fff;
-    }
+        --theme-clr: #f5d220;
+        background-color: #000;
 
-    .chall {
-        background: url(img/challenge.jpg);
-        height: calc(100vh - var(--nav-height) - var(--footer-height));
-    }
-
-    .chall .overlay {
         height: 100%;
-        width: 100%;
-        background-color: #222;
-        opacity: 0.6;
+        padding: 28px;
+        padding-top: 0;
     }
 
-    .chall .text {
+    main * {
+        font-family: 'Smilage';
+        text-align: left;
+    }
+
+    .banner {
+        background: var(--theme-clr) url(img/grunge.png);
+        height: calc(100vh - var(--nav-height) - var(--footer-height));
+        border-radius: 0 0 8px 8px;
+        margin-bottom: 28px;
+        color: #000;
+        text-align: left;
+        position: relative;
+    }
+
+    .banner .b1 {
+        width: 70%;
         position: absolute;
-        top: 0;
         bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 32px 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
     }
 
-    p.large {
-        font-size: 60px;
-        padding: 40px;
+    .banner .b2 {
+        width: 16%;
+        position: absolute;
+        top: 20px;
+        right: 16px;
+    }
+
+    .banner .b3 {
+        font-size: 40px;
+        position: absolute;
+        bottom: 16px;
+        right: 32px;
+    }
+
+    .desc {
+        background-color: #252525;
+        border-radius: 8px;
+        padding: 16px;
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: initial;
+    }
+
+    .desc .card {
+        width: 50%;
+    }
+
+    .desc .card.left {
+        padding-right: 20px;
+    }
+
+    .desc .card.right {
+        padding-left: 20px;
+    }
+
+    .desc .card h2 {
+        font-weight: normal;
+        color: var(--theme-clr);
+        font-size: 36px;
+    }
+
+    .desc .card p,
+    .desc .card ol li {
+        font-family: 'Product Sans';
+        font-size: 20px;
+    }
+
+    .desc .card ol {
+        padding-left: 20px;
+    }
+
+    /* leaderboard */
+
+    .leaderboard {
+        padding: 16px;
+    }
+
+    .leaderboard h2 {
+        font-weight: normal;
+        color: var(--theme-clr);
+        font-size: 36px;
+
+        display: flex;
+        align-items: center;
+
+    }
+
+    .leaderboard h2 span {
+        font-family: 'Product Sans';
+        color: #000;
+        background-color: var(--theme-clr);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-left: 20px;
+    }
+
+    .leaderboard p {
+        font-family: 'Product Sans';
+        font-size: 20px;
+    }
+
+    /* challenges */
+
+    .challenges {
+        padding: 20px;
+        padding-top: 48px;
+    }
+
+    .challenges h1 {
+        text-align: center;
+        font-size: 56px;
+        letter-spacing: 4px;
+    }
+
+    .challenges .sec {
+        height: 280px;
+    }
+
+    .challenges .sec h2 {
+        color: var(--theme-clr);
+        font-size: 36px;
+        font-weight: normal;
+        padding-bottom: 10px;
+    }
+
+    .challenges .sec .sect-w {
+        overflow-x: auto;
+        padding-bottom: 4px;
+        display: flex;
+    }
+
+    .sect {
+        background-color: var(--theme-clr);
+        color: #000;
+        border-radius: 6px;
+        padding: 12px;
+        min-width: 300px;
+        width: fit-content;
+        height: 176px;
+        margin-right: 28px;
+    }
+
+    .sect p.head {
+        font-size: 64px;
+        letter-spacing: 2px;
+    }
+
+    .sec p.name {
+        font-size: 24px;
+        letter-spacing: 2px;
+        padding-bottom: 16px;
+    }
+
+    /* faq */
+
+    .faq * {
+        font-family: "Product Sans";
+    }
+
+    .faq h1 {
+        text-align: center;
+        font-size: 56px;
+        letter-spacing: 4px;
+        font-family: "Smilage";
+        margin-bottom: 56px;
+    }
+
+    .faq .collapsible-item>.body {
+        border: none;
+    }
+
+    .faq .collapsible-item>.body .content {
+        padding: 20px 32px;
+    }
+
+    .faq .collapsible-item .title .iconleft {
+        float: right !important;
+    }
+
+    .faq .collapsible-item .title {
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+        border: none;
+        color: var(--theme-clr);
+        font-size: 24px;
+    }
+
+    @media screen and (max-width:580px) {
+        .banner {
+            height: 70vh;
+        }
+
+        .banner .b1 {
+            width: 98%;
+            position: absolute;
+            top: 40%;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+
+        .banner .b2 {
+            width: 30%;
+            position: absolute;
+            top: calc(20px + var(--nav-height));
+            right: 16px;
+            left: 16px;
+            margin: 0 auto;
+        }
+
+        .banner .b3 {
+            font-size: 40px;
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            left: 16px;
+            text-align: center;
+        }
+
+        .desc {
+            flex-direction: column;
+        }
+
+        .desc .card {
+            width: 100%;
+        }
+
+        .desc .card.left {
+            padding: 0;
+            padding-bottom: 20px;
+        }
+
+        .desc .card.right {
+            padding: 0;
+            padding-top: 20px;
+        }
+
+        .leaderboard h2 span {
+            font-size: 8px;
+        }
     }
 </style>
 <main>
-    <div class="chall">
-        <div class="overlay"></div>
-        <div class="text">
-            <p class="large">
-                <strong>Challenge Series</strong>
+    <div class="chall-wrapper">
+        <div class="banner">
+            <img src="img/logo-challenge.png" class="b1" alt="">
+            <img src="img/logo-bw.png" class="b2" alt="">
+            <p class="b3">The Game None Heeds,
+                But the
+                world needs!</p>
+        </div>
+        <div class="desc">
+            <div class="card left">
+                <h2>ABOUT</h2>
+                <p>
+                    The main aim of this event series is to give exposure about the various competitions (Hackathons,
+                    Ideathons and Competitive coding) at college, national and international levels and to build
+                    confidence of the students to take up and WIN at these events!
+                    <br>
+                    <br>
+                    What's more? LOADS of prizes for every challenge!
+                    <br>
+                    💸x3
+                </p>
+            </div>
+            <div class="card right">
+                <h2>HOW WILL IT WORK?</h2>
+                <p>
+                    There will be a new challenge each week. Every challenge will be unique but the rules will be the
+                    same:
+                    <br>
+                    <br>
+                    <ol>
+                        <li>A fixed deadline (Cause everyone loves a race against time!🔥)</li>
+                        <li>Prizes for the best</li>
+                        <li>A practical and credible idea</li>
+                        <li>A solid team of 2 - 4 members (you can be a lone wolf too)</li>
+                        <li>Extra points for performing special tasks that will be unique for each challenge</li>
+                    </ol>
+                </p>
+            </div>
+        </div>
+        <div class="leaderboard">
+            <h2>The Leaderboard <span> COMING SOON </span></h2>
+            <p>
+                The Almighty Leaderboard remembers everything. The scores of all teams will be recorded and displayed
+                here and the performances of every team will be tracked. There will be a grand prize for consistently
+                top teams.
             </p>
-            <h1>Coming Soon!
-                <br>
-                <small>
-                    <small>Stay tuned..</small>
-                </small>
-            </h1>
-            <h2 style="padding-top: 20px;">
-                Go
-                <a href="#/" style="color: #eee;">home</a>?
-            </h2>
+        </div>
+        <div class="challenges">
+            <h1>Challenges</h1>
+            <div class="ideathons sec">
+                <h2>Ideathons</h2>
+                <div class="sect-w">
+                    <div class="sect">
+                        <p class="head">Id-<sup>#</sup>01</p>
+                        <p class="name">The Season Begins</p>
+                        <p class="date">Due - 15th January 2019</p>
+                    </div>
+                    <div class="sect">
+                        <p class="head">Behold</p>
+                        <p class="name">more coming soon</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hackathons sec">
+                <h2>Hackathons</h2>
+                <div class="sect-w">
+                    <div class="sect">
+                        <p class="head">Behold</p>
+                        <p class="name">more coming soon</p>
+                    </div>
+                </div>
+            </div>
+            <div class="codesprints sec">
+                <h2>CodeSprints</h2>
+                <div class="sect-w">
+                    <div class="sect-w">
+                        <div class="sect">
+                            <p class="head">Behold</p>
+                            <p class="name">more coming soon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="faq">
+            <h1>FAQs</h1>
+            <ang-accordion one-at-a-time="true" icon-position="left" close-icon-url="img/plus.svg" open-icon-url="img/clear.svg">
+                <collapsible-item item-title=" {{qa.question}} " ng-repeat="qa in qna ">
+                    <div class="answer">{{qa.answer}}</div>
+                </collapsible-item>
+            </ang-accordion>
         </div>
     </div>
 </main>

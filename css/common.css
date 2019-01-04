@@ -5,6 +5,12 @@
     src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
 }
 
+@font-face {
+    font-family: 'Smilage';
+    font-style: normal;
+    src: url('../fonts/smilage.ttf');
+}
+
 body {
     background-color: transparent;
 }
