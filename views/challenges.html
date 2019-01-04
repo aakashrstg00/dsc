@@ -50,7 +50,7 @@
     .banner .b2 {
         width: 16%;
         position: absolute;
-        top: 20px;
+        top: calc(20px + var(--nav-height));
         right: 16px;
     }
 
@@ -64,7 +64,7 @@
     .desc {
         background-color: #252525;
         border-radius: 8px;
-        padding: 16px;
+        padding: 24px;
 
         display: flex;
         justify-content: space-evenly;
@@ -102,7 +102,7 @@
     /* leaderboard */
 
     .leaderboard {
-        padding: 16px;
+        padding: 24px;
     }
 
     .leaderboard h2 {
@@ -112,7 +112,7 @@
 
         display: flex;
         align-items: center;
-
+        padding-bottom: 16px;
     }
 
     .leaderboard h2 span {
@@ -171,6 +171,10 @@
         margin-right: 28px;
     }
 
+    .sect.sect-active {
+        cursor: pointer;
+    }
+
     .sect p.head {
         font-size: 64px;
         letter-spacing: 2px;
@@ -221,12 +225,12 @@
 
     @media screen and (max-width:580px) {
         .banner {
-            height: 70vh;
+            height: fit-content;
         }
 
         .banner .b1 {
             width: 98%;
-            position: absolute;
+            position: static;
             top: 40%;
             left: 0;
             right: 0;
@@ -234,20 +238,16 @@
         }
 
         .banner .b2 {
-            width: 30%;
-            position: absolute;
-            top: calc(20px + var(--nav-height));
-            right: 16px;
-            left: 16px;
-            margin: 0 auto;
+            width: 148px;
+            position: static;
+            margin-top: calc(20px + var(--nav-height));
+            margin-left: calc(50% - 74px);
         }
 
         .banner .b3 {
-            font-size: 40px;
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            left: 16px;
+            font-size: 32px;
+            position: static;
+            padding: 20px 40px;
             text-align: center;
         }
 
@@ -277,8 +277,8 @@
 <main>
     <div class="chall-wrapper">
         <div class="banner">
-            <img src="img/logo-challenge.png" class="b1" alt="">
             <img src="img/logo-bw.png" class="b2" alt="">
+            <img src="img/logo-challenge.png" class="b1" alt="">
             <p class="b3">The Game None Heeds,
                 But the
                 world needs!</p>
@@ -327,7 +327,7 @@
             <div class="ideathons sec">
                 <h2>Ideathons</h2>
                 <div class="sect-w">
-                    <div class="sect">
+                    <div class="sect sect-active" ng-click="modalView('mod-01')">
                         <p class="head">Id-<sup>#</sup>01</p>
                         <p class="name">The Season Begins</p>
                         <p class="date">Due - 15th January 2019</p>
@@ -369,3 +369,59 @@
         </div>
     </div>
 </main>
+<div id="mod-01" class="dialog-wrapper">
+    <div class="dialog">
+        <div class="dialog-content">
+
+        </div>
+        <div class="cross" ng-click="modalClose('mod-01')">
+            &#9932;
+        </div>
+    </div>
+</div>
+<style>
+    .dialog-wrapper {
+        padding: 16px;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 15;
+        display: flex;
+        align-items: center;
+        display: none;
+    }
+
+    .dialog-wrapper .dialog {
+        margin: 0 auto;
+        width: 60%;
+        max-height: 100%;
+        overflow-y: auto;
+        height: fit-content;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+        padding: 12px;
+    }
+
+    .dialog-wrapper .cross {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 16px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 24px;
+    }
+
+    @media screen and (max-width:580px) {
+        .dialog-wrapper .dialog {
+            width: 100% !important;
+            overflow-y: auto;
+        }
+    }
+</style>

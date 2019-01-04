@@ -136,6 +136,16 @@
                     answer: "Reach out to us on DSC Student Members Group. Other people may also have the same doubts, so it's better to utilize the group."
                 }
             ];
+
+            $scope.modalView = function (name) {
+                document.getElementById(name).style.display = 'flex';
+                document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+            }
+
+            $scope.modalClose = function (name) {
+                document.getElementById(name).style.display = 'none';
+                document.getElementsByTagName('body')[0].style.overflowY = 'unset';
+            }
         });
 
         app.config(function ($routeProvider, $locationProvider) {
