@@ -152,6 +152,7 @@
         font-size: 36px;
         font-weight: normal;
         padding-bottom: 10px;
+        letter-spacing: 2px;
     }
 
     .challenges .sec .sect-w {
@@ -184,6 +185,10 @@
         font-size: 24px;
         letter-spacing: 2px;
         padding-bottom: 16px;
+    }
+
+    .sec p.date {
+        font-size: 20px;
     }
 
     /* faq */
@@ -325,12 +330,12 @@
         <div class="challenges">
             <h1>Challenges</h1>
             <div class="ideathons sec">
-                <h2>Ideathons</h2>
+                <h2>Ideathons <span>[Id-<sup>#</sup>]</span></h2>
                 <div class="sect-w">
                     <div class="sect sect-active" ng-click="modalView('mod-01')">
                         <p class="head">Id-<sup>#</sup>01</p>
                         <p class="name">The Season Begins</p>
-                        <p class="date">Due - 15th January 2019</p>
+                        <p class="date">Due - 12th January 2019</p>
                     </div>
                     <div class="sect">
                         <p class="head">Behold</p>
@@ -339,7 +344,7 @@
                 </div>
             </div>
             <div class="hackathons sec">
-                <h2>Hackathons</h2>
+                <h2>Hackathons <span>[Hk-<sup>#</sup>]</span></h2>
                 <div class="sect-w">
                     <div class="sect">
                         <p class="head">Behold</p>
@@ -348,7 +353,7 @@
                 </div>
             </div>
             <div class="codesprints sec">
-                <h2>CodeSprints</h2>
+                <h2>CodeSprints <span>[Cs-<sup>#</sup>]</span></h2>
                 <div class="sect-w">
                     <div class="sect-w">
                         <div class="sect">
@@ -361,7 +366,23 @@
         </div>
         <div class="faq">
             <h1>FAQs</h1>
-            <ang-accordion one-at-a-time="true" icon-position="left" close-icon-url="img/plus.svg" open-icon-url="img/clear.svg">
+            <ang-accordion one-at-a-time="true" icon-position="right" close-icon-url="img/plus.svg" open-icon-url="img/clear.svg">
+                <collapsible-item item-title="What exactly is Challenge Series?">
+                    <div class="answer">
+                        It's an online intra college event. There are 3 genres: <br>
+                        <br>
+                        Ideathon - <br>
+                        You need to give a presentation solution for one of the problem statements. Do market research
+                        and give a business model. <br>
+                        Hackathon - <br>
+                        In this, you need to build a minimum viable product (app/hardware/anything else) for the
+                        problem statement. <br>
+                        CodeSprint- <br>
+                        This will be a competitive programming challenge. <br>
+                        <br>
+                        There will be multiple challenges throughout the semester. <br>
+                    </div>
+                </collapsible-item>
                 <collapsible-item item-title=" {{qa.question}} " ng-repeat="qa in qna ">
                     <div class="answer">{{qa.answer}}</div>
                 </collapsible-item>
@@ -378,7 +399,7 @@
                 <h2>The first ever challenge in the series is designed keeping in mind the beginners. The challenge is
                     simple and easy to implement. </h2>
                 <br>
-                <h1>PRIZE POOL - &#8377;2000</h1>
+                <h1>PRIZE POOL - &#8377;2019</h1>
                 <br>
             </div>
             <div>
