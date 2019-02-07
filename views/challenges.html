@@ -231,6 +231,56 @@
         font-size: 24px;
     }
 
+    #stab {
+        width: 100%;
+        padding: 32px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    #stab aside {
+        width: 100%;
+        padding: 0 12px;
+    }
+
+    #stab section {
+        width: 100%;
+        padding: 20px 12px;
+    }
+
+    #stab section * {
+        font-family: 'Product Sans', sans-serif;
+    }
+
+    #stab aside ul {
+        list-style: none;
+        width: 100%;
+        border: 1px solid var(--theme-clr);
+        border-radius: 4px;
+        overflow: hidden;
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #stab ul li {
+        padding: 8px 16px;
+        border-right: 1px solid var(--theme-clr);
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    #stab ul li:last-child {
+        border: none;
+    }
+
+    #stab ul li.selected {
+        background-color: var(--theme-clr);
+        color: #000;
+    }
+
     @media screen and (max-width:580px) {
         .banner {
             height: fit-content;
@@ -281,6 +331,45 @@
             font-size: 10px;
             font-weight: bold;
         }
+
+        #stab {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        #stab aside {
+            width: 100%;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        #stab section {
+            width: 100%;
+            padding: 0 12px;
+        }
+    }
+
+    #stab section table {
+        /* border: 1px solid #fff; */
+        border-collapse: collapse;
+        /* width: 350px; */
+        margin: 0 auto;
+    }
+
+    #stab section table thead tr {
+        font-weight: bold;
+        color: var(--theme-clr);
+    }
+
+    #stab section table tr:nth-child(even) {
+        color: var(--theme-clr-sub);
+    }
+
+    #stab section table td {
+        /* border: 1px solid #fff; */
+        padding: 16px;
     }
 </style>
 <main>
@@ -322,14 +411,6 @@
                     </ol>
                 </p>
             </div>
-        </div>
-        <div class="leaderboard">
-            <h2>The Leaderboard <span> COMING SOON </span></h2>
-            <p>
-                The Almighty Leaderboard remembers everything. The scores of all teams will be recorded and displayed
-                here and the performances of every team will be tracked. There will be a grand prize for consistently
-                top teams.
-            </p>
         </div>
         <div class="challenges">
             <h1>Challenges</h1>
@@ -381,6 +462,98 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="leaderboard">
+            <h2>The Leaderboard</h2>
+            <p>
+                The Almighty Leaderboard remembers everything. The scores of all teams will be recorded and displayed
+                here and the performances of every team will be tracked. There will be a grand prize for consistently
+                top teams.
+            </p>
+            <div id="stab">
+                <aside>
+                    <ul>
+                        <li ng-class="{'selected': view_tab == 'tab1'}" ng-click="changeTab('tab1')">Ideathon</li>
+                        <li ng-class="{'selected': view_tab == 'tab2'}" ng-click="changeTab('tab2')">Hackathon</li>
+                        <li ng-class="{'selected': view_tab == 'tab3'}" ng-click="changeTab('tab3')">CodeSprint</li>
+                        <li ng-class="{'selected': view_tab == 'tab4'}" ng-click="changeTab('tab4')">Overall</li>
+                    </ul>
+                </aside>
+                <section>
+                    <div ng-show="view_tab == 'tab1'">
+                        <table ng-show="lb.data.allEventtype[1]">
+                            <thead>
+                                <tr>
+                                    <td>Rank</td>
+                                    <td>Username</td>
+                                    <td>Score</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="u in lb.data.allEventtype[1].eventSet[0].participatedSet track by $index">
+                                    <td>#{{$index + 1}}</td>
+                                    <td>{{u.user.user}}</td>
+                                    <td>{{u.score}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-show="view_tab == 'tab2'">
+                        <table ng-show="lb.data.allEventtype[2]">
+                            <thead>
+                                <tr>
+                                    <td>Rank</td>
+                                    <td>Username</td>
+                                    <td>Score</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="u in lb.data.allEventtype[2].eventSet[0].participatedSet track by $index">
+                                    <td>#{{$index + 1}}</td>
+                                    <td>{{u.user.user}}</td>
+                                    <td>{{u.score}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-show="view_tab == 'tab3'">
+                        <table ng-show="lb.data.allEventtype[0]">
+                            <thead>
+                                <tr>
+                                    <td>Rank</td>
+                                    <td>Username</td>
+                                    <td>Score</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="u in lb.data.allEventtype[0].eventSet[0].participatedSet track by $index">
+                                    <td>#{{$index + 1}}</td>
+                                    <td>{{u.user.user}}</td>
+                                    <td>{{u.score}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ng-show="view_tab == 'tab4'">
+                        <table ng-show="user">
+                            <thead>
+                                <tr>
+                                    <td>Rank</td>
+                                    <td>Username</td>
+                                    <td>Score</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="u.score" ng-repeat="u in user.data.allCustomuser | orderBy: '-score' track by $index">
+                                    <td>#{{$index + 1}}</td>
+                                    <td>{{u.user}}</td>
+                                    <td>{{u.score}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
             </div>
         </div>
         <div class="faq">

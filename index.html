@@ -102,7 +102,9 @@
     <script>
         var app = angular.module("DSCApp", ['ngRoute', 'angAccordion']);
 
-        app.controller("ChallengeController", function ($scope) {
+        app.controller("ChallengeController", function ($scope, $http, $q) {
+            $scope.view_tab = 'tab1';
+
             $scope.qna = [
                 {
                     question: "Should each member of the team submit the form?",
@@ -155,6 +157,27 @@
                 document.getElementById(name).style.display = 'none';
                 document.getElementsByTagName('body')[0].style.overflowY = 'unset';
             }
+
+            $scope.changeTab = function (tab) {
+                $scope.view_tab = tab;
+                console.log(tab);
+            }
+
+            $scope.loadLB = function () {
+                $http.get('https://dscleaderboardapp.herokuapp.com/graphql?query=query%7B%0A%20%20allEventtype%7B%0A%20%20%20%20id%0A%20%20%20%20name%0A%20%20%20%20eventSet%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20participatedSet%7B%0A%20%20%20%20%20%20%20%20user%20%7B%0A%20%20%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20%20%20user%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20score%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D')
+                    .then(function (data) {
+                        $scope.lb = data.data
+                        console.log($scope.lb);
+                    });
+
+                // $http.get('https://dscleaderboardapp.herokuapp.com/user')
+                $http.get('https://dscleaderboardapp.herokuapp.com/graphql?query=%7B%0A%20%20allCustomuser%7B%0A%20%20%20%20id%0A%20%20%20%20user%0A%20%20%20%20score%0A%20%20%7D%0A%7D&operationName=null')
+                    .then(function (data) {
+                        $scope.user = data.data
+                        console.log($scope.user);
+                    });
+            }
+            $scope.loadLB();
         });
 
         app.config(function ($routeProvider, $locationProvider) {
@@ -177,11 +200,11 @@
         });
     </script>
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js', { scope: '/' })
-                .then(reg => console.log("SW Registered, ", reg.scope))
-                .catch(err => console.error("SW Error, ", err));
-        }
+        // if ('serviceWorker' in navigator) {
+        //     navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        //         .then(reg => console.log("SW Registered, ", reg.scope))
+        //         .catch(err => console.error("SW Error, ", err));
+        // }
     </script>
 </body>
 
