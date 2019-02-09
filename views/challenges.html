@@ -167,10 +167,10 @@
         background-color: var(--theme-clr-sub);
         color: #000;
         border-radius: 6px;
-        padding: 12px;
+        padding: 12px 18px;
         min-width: 300px;
         width: fit-content;
-        height: 176px;
+        height: 204px;
         margin-right: 28px;
     }
 
@@ -482,7 +482,7 @@
                 </aside>
                 <section>
                     <div ng-show="view_tab == 'tab1'">
-                        <table ng-show="lb.data.allEventtype[1]">
+                        <table ng-show="ideathon.length">
                             <thead>
                                 <tr>
                                     <td>Rank</td>
@@ -491,16 +491,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="u in lb.data.allEventtype[1].eventSet[0].participatedSet track by $index">
+                                <tr ng-repeat="u in ideathon | orderBy: '-score' track by $index">
                                     <td>#{{$index + 1}}</td>
-                                    <td>{{u.user.user}}</td>
+                                    <td>{{u.username}}</td>
                                     <td>{{u.score}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div ng-hide="ideathon.length">
+                            <h2>Data Not Available Yet!!</h2>
+                        </div>
                     </div>
                     <div ng-show="view_tab == 'tab2'">
-                        <table ng-show="lb.data.allEventtype[2]">
+                        <table ng-show="hackathon.length">
                             <thead>
                                 <tr>
                                     <td>Rank</td>
@@ -509,16 +512,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="u in lb.data.allEventtype[2].eventSet[0].participatedSet track by $index">
+                                <tr ng-repeat="u in hackathon | orderBy: '-score' track by $index">
                                     <td>#{{$index + 1}}</td>
-                                    <td>{{u.user.user}}</td>
+                                    <td>{{u.username}}</td>
                                     <td>{{u.score}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div ng-hide="hackathon.length">
+                            <h2>Data Not Available Yet!!</h2>
+                        </div>
                     </div>
                     <div ng-show="view_tab == 'tab3'">
-                        <table ng-show="lb.data.allEventtype[0]">
+                        <table ng-show="codesprint.length">
                             <thead>
                                 <tr>
                                     <td>Rank</td>
@@ -527,13 +533,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="u in lb.data.allEventtype[0].eventSet[0].participatedSet track by $index">
+                                <tr ng-repeat="u in codesprint | orderBy: '-score' track by $index">
                                     <td>#{{$index + 1}}</td>
-                                    <td>{{u.user.user}}</td>
+                                    <td>{{u.username}}</td>
                                     <td>{{u.score}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div ng-hide="codesprint.length">
+                            <h2>Data Not Available Yet!!</h2>
+                        </div>
                     </div>
                     <div ng-show="view_tab == 'tab4'">
                         <table ng-show="user">
@@ -545,13 +554,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-show="u.score" ng-repeat="u in user.data.allCustomuser | orderBy: '-score' track by $index">
+                                <tr ng-show="u.score" ng-repeat="u in user.allCustomuser | orderBy: '-score' track by $index">
                                     <td>#{{$index + 1}}</td>
                                     <td>{{u.user}}</td>
                                     <td>{{u.score}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div ng-hide="user.allCustomuser.length">
+                            <h2>Data Not Available Yet!!</h2>
+                        </div>
                     </div>
                 </section>
             </div>

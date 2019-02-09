@@ -164,18 +164,39 @@
             }
 
             $scope.loadLB = function () {
-                $http.get('https://dscleaderboardapp.herokuapp.com/graphql?query=query%7B%0A%20%20allEventtype%7B%0A%20%20%20%20id%0A%20%20%20%20name%0A%20%20%20%20eventSet%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20participatedSet%7B%0A%20%20%20%20%20%20%20%20user%20%7B%0A%20%20%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20%20%20user%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20score%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D')
+                $http.get('https://dscleaderboardapp.herokuapp.com/graphql/?query=%7B%0A%20%20allCustomuser%20%7B%0A%20%20%20%20user%0A%20%20%20%20eventtotalSet%20%7B%0A%20%20%20%20%20%20totalScore%0A%20%20%20%20%20%20eventType%20%7B%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&variables=null&operationName=null')
                     .then(function (data) {
-                        $scope.lb = data.data
-                        console.log($scope.lb);
+                        var all = data.data.data.allCustomuser;
+                        $scope.ideathon = [];
+                        $scope.hackathon = [];
+                        $scope.codesprint = [];
+                        all.forEach(s => {
+                            if (s.eventtotalSet.length) {
+                                s.eventtotalSet.forEach(ev => {
+                                    ev.eventType.name == 'Ideathon' && $scope.ideathon.push({ username: s.user, score: ev.totalScore });
+                                    ev.eventType.name == 'Hackathon' && $scope.hackathon.push({ username: s.user, score: ev.totalScore });
+                                    ev.eventType.name == 'CodeSprint' && $scope.codesprint.push({ username: s.user, score: ev.totalScore });
+                                });
+                            }
+                        });
+                        console.log("Ideathon:", $scope.ideathon);
+                        console.log("Hackathon:", $scope.hackathon);
+                        console.log("CodeSprint:", $scope.codesprint);
+                        // console.log($scope.lb);
                     });
 
                 // $http.get('https://dscleaderboardapp.herokuapp.com/user')
                 $http.get('https://dscleaderboardapp.herokuapp.com/graphql?query=%7B%0A%20%20allCustomuser%7B%0A%20%20%20%20id%0A%20%20%20%20user%0A%20%20%20%20score%0A%20%20%7D%0A%7D&operationName=null')
                     .then(function (data) {
-                        $scope.user = data.data
+                        $scope.user = data.data.data
                         console.log($scope.user);
                     });
+
+                // $http.get('https://dscleaderboardapp.herokuapp.com/graphql?query=%7B%0A%20%20allCustomuser%7B%0A%20%20%20%20id%0A%20%20%20%20user%0A%20%20%20%20participatedSet%7B%0A%20%20%20%20%20%20id%0A%20%20%20%20%20%20score%0A%20%20%20%20%20%20event%7B%0A%20%20%20%20%20%20%20%20id%0A%20%20%20%20%20%20%20%20name%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D&operationName=null')
+                //     .then(function (data) {
+                //         console.log(data.data);
+                //         var o = data.data.data.allCustomuser;
+                //     });
             }
             $scope.loadLB();
         });
